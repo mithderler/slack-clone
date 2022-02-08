@@ -15,8 +15,10 @@ import SidebarOption from './SidebarOption';
 import db from '../firebase/config';
 import { collection, onSnapshot } from 'firebase/firestore';
 import './Sidebar.css';
+import { useStateValue } from '../context/auth-context';
 
 function Sidebar() {
+  const [{ user }] = useStateValue();
   const [channels, setChannels] = useState([]);
 
   useEffect(() => {
@@ -38,10 +40,10 @@ function Sidebar() {
     <div className='sidebar'>
       <div className='sidebar__header'>
         <div className='sidebar__info'>
-          <h2>Clever Programmer</h2>
+          <h2>Devs to Moon</h2>
           <h3>
             <FiberManualRecordIcon />
-            Rafeh Qazi
+            {user?.displayName}
           </h3>
         </div>
         <CreateIcon />

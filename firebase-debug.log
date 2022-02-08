@@ -1,0 +1,24 @@
+[debug] [2022-02-08T12:01:43.668Z] ----------------------------------------------------------------------
+[debug] [2022-02-08T12:01:43.670Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-02-08T12:01:43.671Z] CLI Version:   10.1.4
+[debug] [2022-02-08T12:01:43.671Z] Platform:      win32
+[debug] [2022-02-08T12:01:43.671Z] Node Version:  v16.13.1
+[debug] [2022-02-08T12:01:43.684Z] Time:          Tue Feb 08 2022 15:01:43 GMT+0300 (GMT+03:00)
+[debug] [2022-02-08T12:01:43.684Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-02-08T12:01:43.689Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-02-08T12:01:43.726Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-02-08T12:01:43.726Z] > authorizing via signed-in user (eyupdemir@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Yazılım\React\Slack-Clone
+
+[debug] [2022-02-08T12:01:44.410Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-02-08T12:01:44.411Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
