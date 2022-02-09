@@ -49,3 +49,20 @@
   background-color: white;
   border-radius: 999px;
 }
+
+.sidebar__collapse-button {
+  background-color: transparent;
+  color: inherit;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding-left: 2px;
+  cursor: pointer;
+  border: none;
+}
+
+.sidebar__collapse-button:hover {
+  background-color: #340e36;
+  opacity: 0.9;
+}

@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { StateProvider } from './context/auth-context';
-import reducer, { initialState } from './context/reducer';
+import { AuthContextProvider } from './context/auth-context';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <StateProvider initialState={initialState} reducer={reducer}>
+      <AuthContextProvider>
         <App />
-      </StateProvider>
+      </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

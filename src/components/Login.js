@@ -1,31 +1,24 @@
 import {
-  browserLocalPersistence,
+  browserSessionPersistence,
   setPersistence,
   signInWithPopup,
-  GoogleAuthProvider,
 } from 'firebase/auth';
 import { auth, provider } from '../firebase/config';
 import { Button } from '@mui/material';
-import { useStateValue } from '../context/auth-context';
-import { actionTypes } from '../context/reducer';
+import { useContext } from 'react';
+import AuthContext from '../context/auth-context';
 import './Login.css';
 
 function Login() {
-  const [state, dispatch] = useStateValue();
+  const authCtx = useContext(AuthContext);
 
   const signIn = () => {
-    setPersistence(auth, browserLocalPersistence)
+    setPersistence(auth, browserSessionPersistence)
       .then(() => {
         return signInWithPopup(auth, provider);
       })
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        console.log('tokenn: ', token);
-        dispatch({
-          type: actionTypes.SET_USER,
-          user: result.user,
-        });
+        authCtx.login(result.user);
       })
       .catch((error) => {
         alert(error.message);

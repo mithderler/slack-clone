@@ -1,13 +1,66 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { useState } from 'react';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
-export const StateContext = createContext();
+const AuthContext = React.createContext({
+  user: null,
+  isUserLoggedIn: false,
+  login: () => {},
+  logout: () => {},
+});
 
-export const StateProvider = ({ reducer, initialState, children }) => {
+const retrieveSessionedUser = () => {
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    console.log('usrr: ', user);
+    if (user) {
+      console.log('inside');
+      return user;
+    }
+    console.log('outside');
+    return null;
+  });
+};
+
+export const AuthContextProvider = (props) => {
+  const userData = retrieveSessionedUser();
+  console.log('userData: ', userData);
+  let initialUser;
+  if (userData) {
+    initialUser = userData;
+  }
+  console.log('initial: ', initialUser);
+
+  const [user, setUser] = useState('mith');
+
+  const isUserLoggedIn = !!user;
+
+  const logoutHandler = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        console.log('signed out successfully!');
+      })
+      .catch((error) => {
+        console.log('something went wrong when singed out!');
+      });
+  };
+
+  const loginHandler = (user) => {
+    setUser(user);
+  };
+
+  const contextValue = {
+    user: user,
+    isUserLoggedIn: isUserLoggedIn,
+    login: loginHandler,
+    logout: logoutHandler,
+  };
+
   return (
-    <StateContext.Provider value={useReducer(reducer, initialState)}>
-      {children}
-    </StateContext.Provider>
+    <AuthContext.Provider value={contextValue}>
+      {props.children}
+    </AuthContext.Provider>
   );
 };
 
-export const useStateValue = () => useContext(StateContext);
+export default AuthContext;

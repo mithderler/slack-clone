@@ -1,20 +1,22 @@
+import { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Chat from './components/Chat';
 import Login from './components/Login';
-import { useStateValue } from './context/auth-context';
+import AuthContext from './context/auth-context';
+
 import './App.css';
 
 function App() {
-  const [{ user }] = useStateValue();
+  const authCtx = useContext(AuthContext);
+  const isUserLoggedIn = authCtx.isUserLoggedIn;
 
   return (
     // BEM naming convention
     <div className='App'>
-      {!user ? (
-        <Login />
-      ) : (
+      {!isUserLoggedIn && <Login />}
+      {isUserLoggedIn && (
         <>
           <Header />
           <div className='app__body'>
@@ -24,8 +26,6 @@ function App() {
               <Route path='/room/:roomId' element={<Chat />} />
               <Route path='*' element={<h1>Page not found</h1>} />
             </Routes>
-
-            {/* React-Router -> Chat screen */}
           </div>
         </>
       )}

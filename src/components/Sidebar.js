@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CreateIcon from '@mui/icons-material/Create';
-import InsertCommentIcon from '@mui/icons-material/InsertComment';
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import AppsIcon from '@mui/icons-material/Apps';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import AddIcon from '@mui/icons-material/Add';
 import SidebarOption from './SidebarOption';
 import db from '../firebase/config';
 import { collection, onSnapshot } from 'firebase/firestore';
 import './Sidebar.css';
-import { useStateValue } from '../context/auth-context';
+import AuthContext from '../context/auth-context';
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
 
 function Sidebar() {
-  const [{ user }] = useStateValue();
+  const [open, setOpen] = useState(true);
+  const handleClick = () => {
+    setOpen(!open);
+    console.log(open);
+    console.log('clicked');
+  };
+
+  const authCtx = useContext(AuthContext);
+  const user = authCtx.user;
   const [channels, setChannels] = useState([]);
 
   useEffect(() => {
@@ -48,22 +52,28 @@ function Sidebar() {
         </div>
         <CreateIcon />
       </div>
-      <SidebarOption Icon={InsertCommentIcon} title='Threads' />
-      <SidebarOption Icon={InboxIcon} title='Mentions & reactions' />
-      <SidebarOption Icon={DraftsIcon} title='Saved items' />
-      <SidebarOption Icon={BookmarkBorderIcon} title='Channel browser' />
-      <SidebarOption Icon={PeopleAltIcon} title='People & user groups' />
-      <SidebarOption Icon={AppsIcon} title='Apps' />
-      <SidebarOption Icon={FileCopyIcon} title='File browser' />
-      <SidebarOption Icon={ExpandLessIcon} title='Show less' />
+      <SidebarOption Icon={MoreVertIcon} title='Browse Slack' />
       <hr />
-      <SidebarOption Icon={ExpandMoreIcon} title='Channels' />
+      <button onClick={handleClick} className='sidebar__collapse-button'>
+        <SidebarOption
+          Icon={open ? ExpandLessIcon : ExpandMoreIcon}
+          title='Channels'
+        />
+      </button>
       <hr />
-      <SidebarOption Icon={AddIcon} addChannelOption title='Add Channels' />
 
-      {channels.map((channel) => (
-        <SidebarOption title={channel.name} id={channel.id} key={channel.id} />
-      ))}
+      <Collapse in={open} timeout='auto' unmountOnExit>
+        <List component='div' disablePadding>
+          {channels.map((channel) => (
+            <SidebarOption
+              title={channel.name}
+              id={channel.id}
+              key={channel.id}
+            />
+          ))}
+          <SidebarOption Icon={AddIcon} addChannelOption title='Add Channels' />
+        </List>
+      </Collapse>
     </div>
   );
 }

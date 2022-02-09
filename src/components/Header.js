@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SearchIcon from '@mui/icons-material/Search';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import './Header.css';
-import { useStateValue } from '../context/auth-context';
+import AuthContext from '../context/auth-context';
 
 function Header() {
-  const [{ user }] = useStateValue();
+  const authCtx = useContext(AuthContext);
+  const user = authCtx.user;
   return (
     <div className='header'>
       <div className='header__left'>
