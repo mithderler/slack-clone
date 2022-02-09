@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import db from '../firebase/config';
 import './SidebarOption.css';
 
-function SidebarOption({ Icon, title, id, addChannelOption }) {
+function SidebarOption({ Icon, title, id, addChannelOption, group }) {
   const navigate = useNavigate();
 
   const selectChannel = () => {
@@ -26,10 +26,10 @@ function SidebarOption({ Icon, title, id, addChannelOption }) {
 
   return (
     <div
-      className='sidebarOption'
+      className={`sidebarOption ${group ? 'sidebar__group' : ''}`}
       onClick={addChannelOption ? addChannel : selectChannel}
     >
-      {Icon && <Icon className='sidebarOption__icon' />}
+      {Icon && <Icon className='sidebarOption__icon' color='#bcabbc' />}
       {Icon ? (
         <h3>{title}</h3>
       ) : (

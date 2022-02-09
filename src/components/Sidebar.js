@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import CreateIcon from '@mui/icons-material/Create';
+import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import AddIcon from '@mui/icons-material/Add';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import SidebarOption from './SidebarOption';
 import db from '../firebase/config';
 import { collection, onSnapshot } from 'firebase/firestore';
@@ -44,23 +44,22 @@ function Sidebar() {
     <div className='sidebar'>
       <div className='sidebar__header'>
         <div className='sidebar__info'>
-          <h2>Devs to Moon</h2>
-          <h3>
-            <FiberManualRecordIcon />
-            {user?.displayName}
-          </h3>
+          <div className='sidebar__info-team-name'>
+            <span>Devs to Moon</span>
+            <ExpandMoreIcon fontSize='small' />
+          </div>
+          <h3>{user?.displayName}</h3>
         </div>
-        <CreateIcon />
+        <NoteAltOutlinedIcon />
       </div>
-      <SidebarOption Icon={MoreVertIcon} title='Browse Slack' />
-      <hr />
+      <SidebarOption Icon={MoreVertIcon} title='Browse Slack' group />
       <button onClick={handleClick} className='sidebar__collapse-button'>
         <SidebarOption
-          Icon={open ? ExpandLessIcon : ExpandMoreIcon}
+          Icon={open ? ArrowDropDownIcon : ArrowRightIcon}
           title='Channels'
+          group
         />
       </button>
-      <hr />
 
       <Collapse in={open} timeout='auto' unmountOnExit>
         <List component='div' disablePadding>
@@ -71,7 +70,11 @@ function Sidebar() {
               key={channel.id}
             />
           ))}
-          <SidebarOption Icon={AddIcon} addChannelOption title='Add Channels' />
+          <SidebarOption
+            Icon={AddBoxIcon}
+            addChannelOption
+            title='Add Channels'
+          />
         </List>
       </Collapse>
     </div>

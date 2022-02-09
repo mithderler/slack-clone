@@ -1,9 +1,15 @@
 body {
-  --slack-color: #3f0f40;
-  overflow: hidden;
+  --sidebar-bgColor: #3f0e40;
+  --sidebar-textColor: #bcabbc;
+  --header-bgColor: #350d36;
 }
 
 .app__body {
   display: flex;
   height: 100vh;
+}
+
+::placeholder {
+  color: #fff;
+  opacity: 1;
 }
