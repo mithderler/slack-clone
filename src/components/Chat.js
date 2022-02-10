@@ -12,9 +12,13 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import InfoIcon from '@mui/icons-material/Info';
 import Message from './Message';
 import ChatInput from './ChatInput';
+import RichEditor from './SlateTextEditor';
+import ReadOnly from './SlateReadOnly';
 import './Chat.css';
 
 function Chat() {
+  const [input, setInput] = useState(initialValue);
+
   const { roomId } = useParams();
   const [roomDetails, setRoomDetails] = useState(null);
   const [roomMessages, setRoomMessages] = useState([]);
@@ -30,13 +34,19 @@ function Chat() {
         collection(db, 'rooms', roomId, 'messages'),
         orderBy('timestamp', 'asc')
       );
-      unsubscribe2 = onSnapshot(q, (snapshot) => {
-        const messages = [];
-        snapshot.forEach((doc) => {
-          messages.push(doc.data());
-        });
-        setRoomMessages(messages);
-      });
+      unsubscribe2 = onSnapshot(
+        q,
+        (snapshot) => {
+          const messages = [];
+          snapshot.forEach((doc) => {
+            messages.push(doc.data());
+          });
+          setRoomMessages(messages);
+        },
+        (error) => {
+          console.log('error occured: ', error);
+        }
+      );
     }
 
     return () => {
@@ -73,8 +83,47 @@ function Chat() {
         ))}
       </div>
       <ChatInput channelName={roomDetails?.name} channelId={roomId} />
+      <div>
+        <RichEditor value={input} setValue={setInput} />
+        <ReadOnly initialValue={initialValue} />
+      </div>
     </div>
   );
 }
 
 export default Chat;
+
+const initialValue = [
+  {
+    type: 'paragraph',
+    children: [
+      { text: 'This is editable ' },
+      { text: 'rich', bold: true },
+      { text: ' text, ' },
+      { text: 'much', italic: true },
+      { text: ' better than a ' },
+      { text: '<textarea>', code: true },
+      { text: '!' },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: "Since it's rich text, you can do things like turn a selection of text ",
+      },
+      { text: 'bold', bold: true },
+      {
+        text: ', or add a semantically rendered block quote in the middle of the page, like this:',
+      },
+    ],
+  },
+  {
+    type: 'block-quote',
+    children: [{ text: 'A wise quote.' }],
+  },
+  {
+    type: 'paragraph',
+    children: [{ text: 'Try it out for yourself!' }],
+  },
+];
