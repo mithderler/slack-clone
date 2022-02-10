@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import db from '../firebase/config';
 import {
@@ -12,7 +12,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import InfoIcon from '@mui/icons-material/Info';
 import Message from './Message';
 import ChatInput from './ChatInput';
-import RichEditor from './SlateTextEditor';
+import SlateTextEditor from './SlateTextEditor';
 import ReadOnly from './SlateReadOnly';
 import './Chat.css';
 
@@ -55,6 +55,16 @@ function Chat() {
     };
   }, [roomId]);
 
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [roomMessages]);
+
   return (
     <div className='chat'>
       <div className='chat__header'>
@@ -82,11 +92,17 @@ function Chat() {
           />
         ))}
       </div>
-      <ChatInput channelName={roomDetails?.name} channelId={roomId} />
-      <div>
-        <RichEditor value={input} setValue={setInput} />
-        <ReadOnly initialValue={initialValue} />
+      {/* <ChatInput channelName={roomDetails?.name} channelId={roomId} /> */}
+      <div className='chat__editor'>
+        <SlateTextEditor
+          value={input}
+          setValue={setInput}
+          channelName={roomDetails?.name}
+          channelId={roomId}
+        />
+        {/* <ReadOnly initialValue={initialValue} /> */}
       </div>
+      <div ref={messagesEndRef} />
     </div>
   );
 }
@@ -94,6 +110,13 @@ function Chat() {
 export default Chat;
 
 const initialValue = [
+  {
+    type: 'paragraph',
+    children: [{ text: '' }],
+  },
+];
+
+const initialValue2 = [
   {
     type: 'paragraph',
     children: [

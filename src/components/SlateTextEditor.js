@@ -17,6 +17,13 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import Divider from '@material-ui/core/Divider';
 
+import db from '../firebase/config';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
+import { app } from '../firebase/config';
+const auth = getAuth(app);
+
 const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
@@ -24,10 +31,29 @@ const HOTKEYS = {
   'mod+`': 'code',
 };
 
-const RichEditor = ({ value, setValue }) => {
+const SlateTextEditor = ({ value, setValue, channelId }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+  const [user, loading, error] = useAuthState(auth);
+
+  const sendMessage = (e) => {
+    if (channelId) {
+      addDoc(collection(db, 'rooms', channelId, 'messages'), {
+        message: value[0]?.children[0]?.text,
+        timestamp: serverTimestamp(),
+        user: user.displayName,
+        userImage: user.photoURL,
+      }).then((res) => {
+        Transforms.delete(editor, {
+          at: {
+            anchor: Editor.start(editor, []),
+            focus: Editor.end(editor, []),
+          },
+        });
+      });
+    }
+  };
 
   return (
     <Box p={1} m={2} border={1} borderColor='grey.500' borderRadius={4}>
@@ -81,6 +107,9 @@ const RichEditor = ({ value, setValue }) => {
                   const mark = HOTKEYS[hotkey];
                   toggleMark(editor, mark);
                 }
+              }
+              if (event.key === 'Enter') {
+                sendMessage();
               }
             }}
           />
@@ -231,4 +260,4 @@ const toggleMark = (editor, format) => {
   }
 };
 
-export default RichEditor;
+export default SlateTextEditor;

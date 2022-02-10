@@ -3,6 +3,7 @@
   flex-grow: 1;
   overflow-y: scroll;
   padding-bottom: 150px;
+  position: relative;
 }
 
 .chat__header {
@@ -32,4 +33,11 @@
 .chat__headerRight > p > .MuiSvgIcon-root {
   margin-right: 5px !important;
   font-size: 16px;
+}
+
+.chat__editor {
+  position: fixed;
+  bottom: 0;
+  left: 260px;
+  width: calc(100vw - 300px);
 }
