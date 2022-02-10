@@ -1,22 +1,38 @@
-import { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Chat from './components/Chat';
 import Login from './components/Login';
-import AuthContext from './context/auth-context';
-
+import { getAuth } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { app } from './firebase/config';
 import './App.css';
 
-function App() {
-  const authCtx = useContext(AuthContext);
-  const isUserLoggedIn = authCtx.isUserLoggedIn;
+const auth = getAuth(app);
 
-  return (
-    // BEM naming convention
-    <div className='App'>
-      {!isUserLoggedIn && <Login />}
-      {isUserLoggedIn && (
+function App() {
+  const [user, loading, error] = useAuthState(auth);
+
+  if (loading) {
+    return (
+      <div>
+        <p>Initialising User...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error}</p>
+      </div>
+    );
+  }
+
+  if (user) {
+    return (
+      // BEM naming convention
+      <div className='App'>
         <>
           <Header />
           <div className='app__body'>
@@ -28,7 +44,14 @@ function App() {
             </Routes>
           </div>
         </>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    // BEM naming convention
+    <div className='App'>
+      <Login />
     </div>
   );
 }

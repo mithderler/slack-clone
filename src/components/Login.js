@@ -5,20 +5,16 @@ import {
 } from 'firebase/auth';
 import { auth, provider } from '../firebase/config';
 import { Button } from '@mui/material';
-import { useContext } from 'react';
-import AuthContext from '../context/auth-context';
 import './Login.css';
 
 function Login() {
-  const authCtx = useContext(AuthContext);
-
   const signIn = () => {
     setPersistence(auth, browserSessionPersistence)
       .then(() => {
         return signInWithPopup(auth, provider);
       })
       .then((result) => {
-        authCtx.login(result.user);
+        //logged in
       })
       .catch((error) => {
         alert(error.message);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -9,21 +9,22 @@ import SidebarOption from './SidebarOption';
 import db from '../firebase/config';
 import { collection, onSnapshot } from 'firebase/firestore';
 import './Sidebar.css';
-import AuthContext from '../context/auth-context';
 import Collapse from '@mui/material/Collapse';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
+import { app } from '../firebase/config';
 import List from '@mui/material/List';
 
+const auth = getAuth(app);
+
 function Sidebar() {
+  const [user, loading, error] = useAuthState(auth);
+  const [channels, setChannels] = useState([]);
   const [open, setOpen] = useState(true);
+
   const handleClick = () => {
     setOpen(!open);
-    console.log(open);
-    console.log('clicked');
   };
-
-  const authCtx = useContext(AuthContext);
-  const user = authCtx.user;
-  const [channels, setChannels] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'rooms'), (snapshot) => {

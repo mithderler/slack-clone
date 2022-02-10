@@ -1,13 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import db from '../firebase/config';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import './ChatInput.css';
-import AuthContext from '../context/auth-context';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
+import { app } from '../firebase/config';
+const auth = getAuth(app);
 
 function ChatInput({ channelName, channelId }) {
+  const [user, loading, error] = useAuthState(auth);
   const [input, setInput] = useState('');
-  const authCtx = useContext(AuthContext);
-  const user = authCtx.user;
 
   const sendMessage = async (e) => {
     e.preventDefault();

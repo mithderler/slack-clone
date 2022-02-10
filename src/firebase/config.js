@@ -20,5 +20,5 @@ const auth = getAuth();
 const provider = new GoogleAuthProvider();
 const analytics = getAnalytics(app);
 
-export { auth, provider, analytics };
+export { app, auth, provider, analytics };
 export default db;

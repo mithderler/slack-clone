@@ -87,3 +87,9 @@
   right: 0;
   transform: translate(30%, 30%);
 }
+
+.header__right-logout {
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 0.9rem;
+}
