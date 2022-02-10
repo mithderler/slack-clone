@@ -52,6 +52,11 @@
   vertical-align: initial;
 }
 
+.header__search ::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
 .header__search > .MuiSvgIcon-root {
   height: 18px;
   width: 18px;
