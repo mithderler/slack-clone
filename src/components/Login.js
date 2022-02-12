@@ -6,10 +6,15 @@ import {
 } from 'firebase/auth';
 import { auth, provider } from '../firebase/config';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import './Login.css';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 function Login() {
+  // const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const signIn = () => {
+    // signInWithGoogle();
+
     setPersistence(auth, browserSessionPersistence)
       .then(() => {
         return signInWithPopup(auth, provider);
@@ -34,6 +39,7 @@ function Login() {
         />
         <h1>Sign in to Slack Clone</h1>
         <div>Please select your login type</div>
+        {/* <Button onClick={signIn}>Sign In with Google</Button> */}
         <Button variant='outlined' onClick={signIn}>
           <img
             src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'

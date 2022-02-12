@@ -40,7 +40,7 @@ const SlateTextEditor = ({ value, setValue, channelId }) => {
   const sendMessage = (e) => {
     if (channelId) {
       addDoc(collection(db, 'rooms', channelId, 'messages'), {
-        // message: value[0]?.children[0]?.text,
+        message: value[0]?.children[0]?.text,
         timestamp: serverTimestamp(),
         user: user.displayName,
         userImage: user.photoURL,
@@ -56,7 +56,7 @@ const SlateTextEditor = ({ value, setValue, channelId }) => {
   };
 
   return (
-    <Box m={1} border={1} borderColor='grey.500' borderRadius={4}>
+    <Box p={1} m={2} border={1} borderColor='grey.500' borderRadius={4}>
       <Slate
         editor={editor}
         value={value}
@@ -64,40 +64,40 @@ const SlateTextEditor = ({ value, setValue, channelId }) => {
           setValue(value);
         }}
       >
-        <Toolbar className='editor__toolbar'>
+        <Toolbar>
           <MarkButton format='bold'>
-            <FormatBoldIcon sx={{ fontSize: '14px' }} />
+            <FormatBoldIcon />
           </MarkButton>
           <MarkButton format='italic'>
-            <FormatItalicIcon fontSize='small' />
+            <FormatItalicIcon />
           </MarkButton>
           <MarkButton format='underline'>
-            <FormatUnderlinedIcon fontSize='small' />
+            <FormatUnderlinedIcon />
           </MarkButton>
           <MarkButton format='code'>
-            <CodeIcon fontSize='small' />
+            <CodeIcon />
           </MarkButton>
           <BlockButton format='heading-one'>
-            <LooksOneIcon fontSize='small' />
+            <LooksOneIcon />
           </BlockButton>
           <BlockButton format='heading-two'>
-            <LooksTwoIcon fontSize='small' />
+            <LooksTwoIcon />
           </BlockButton>
           <BlockButton format='block-quote'>
-            <FormatQuoteIcon fontSize='small' />
+            <FormatQuoteIcon />
           </BlockButton>
           <BlockButton format='numbered-list'>
-            <FormatListNumberedIcon fontSize='small' />
+            <FormatListNumberedIcon />
           </BlockButton>
           <BlockButton format='bulleted-list'>
-            <FormatListBulletedIcon fontSize='small' />
+            <FormatListBulletedIcon />
           </BlockButton>
         </Toolbar>
         <Box pl={1}>
           <Editable
             renderElement={renderElement}
             renderLeaf={renderLeaf}
-            placeholder='Enter message'
+            placeholder='Enter some rich text…'
             spellCheck
             autoFocus
             onKeyDown={(event) => {
@@ -161,54 +161,53 @@ export const Leaf = ({ attributes, children, leaf }) => {
 const BlockButton = ({ format, children }) => {
   const editor = useSlate();
   return (
-    <button
-      value={format}
-      selected={isBlockActive(editor, format)}
-      onMouseDown={(event) => {
-        event.preventDefault();
-        toggleBlock(editor, format);
-      }}
-      style={{ lineHeight: 1, fontSize: '10px' }}
-    >
-      {children}
-    </button>
+    <Box ml={1} mt={1}>
+      <ToggleButton
+        value={format}
+        selected={isBlockActive(editor, format)}
+        onMouseDown={(event) => {
+          event.preventDefault();
+          toggleBlock(editor, format);
+        }}
+        style={{ lineHeight: 1 }}
+      >
+        {children}
+      </ToggleButton>
+    </Box>
   );
 };
 
 const MarkButton = ({ format, children }) => {
   const editor = useSlate();
   return (
-    <button
-      value={format}
-      selected={isMarkActive(editor, format)}
-      onMouseDown={(event) => {
-        event.preventDefault();
-        toggleMark(editor, format);
-      }}
-      style={{ margin: 0, padding: 0 }}
-    >
-      {children}
-    </button>
+    <Box ml={1} mt={1}>
+      <ToggleButton
+        value={format}
+        selected={isMarkActive(editor, format)}
+        onMouseDown={(event) => {
+          event.preventDefault();
+          toggleMark(editor, format);
+        }}
+        style={{ lineHeight: 1 }}
+      >
+        {children}
+      </ToggleButton>
+    </Box>
   );
 };
 
 const Menu = React.forwardRef(({ children, ...props }, ref) => (
   <>
     <Box
-      pl={4}
       display='flex'
       direction='row'
       justify='flex-start'
       alignItems='center'
       flexWrap='wrap'
-      backgroundColor='red'
-      height='100%'
-      borderTopLeftRadius='4px'
-      sx={{ borderTopRightRadius: '16px' }}
     >
       {children}
     </Box>
-    <Box pt={1}>
+    <Box pt={2}>
       <Divider variant='middle' />
     </Box>
   </>
