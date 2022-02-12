@@ -5,7 +5,8 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import { auth, provider } from '../firebase/config';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import './Login.css';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
@@ -33,12 +34,19 @@ function Login() {
     <div className='login'>
       <div className='login__container'>
         <img
-          src='https://media.istockphoto.com/photos/ketchup-smiles-picture-id95477720?s=612x612'
+          src='https://a.slack-edge.com/bv1-9/slack_logo-ebd02d1.svg'
           alt=''
         />
         <h1>Sign in to Slack Clone</h1>
-        <p>clone.slack.com</p>
-        <Button onClick={signIn}>Sign In with Google</Button>
+        <div>Please select your login type</div>
+        {/* <Button onClick={signIn}>Sign In with Google</Button> */}
+        <Button variant='outlined' onClick={signIn}>
+          <img
+            src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'
+            alt='google icon'
+          />
+          <span>Continue with Google</span>
+        </Button>
       </div>
     </div>
   );

@@ -1,0 +1,16 @@
+.button {
+  margin-left: 10px;
+  width: 6rem;
+  height: 2rem;
+  background-color: dodgerblue;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid rgb(82, 163, 245);
+}
+
+.button:hover,
+.button:active {
+  cursor: pointer;
+  background-color: rgb(6, 117, 228);
+}

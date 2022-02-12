@@ -9,10 +9,36 @@ body {
   height: calc(100vh - 38px);
 }
 
-.app__spinner {
+.app {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.notfound {
+  width: 100%;
+  height: calc(100vh - 50px);
+  overflow: auto;
+  transform: translateY(-20%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.notfound > h2 {
+  font-size: 4rem;
+  color: #86a8e7;
+}
+
+.notfound > h1 {
+  font-size: 4rem;
+  color: #666666;
+}
+
+.notfound > h3 {
+  font-size: 1.3rem;
+  margin: 10px 0 20px;
 }
