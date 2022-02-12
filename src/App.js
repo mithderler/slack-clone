@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Chat from './components/Chat';
 import Login from './components/Login';
+import CircularProgress from '@mui/material/CircularProgress';
 import { getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { app } from './firebase/config';
@@ -15,8 +16,8 @@ function App() {
 
   if (loading) {
     return (
-      <div>
-        <p>Initialising User...</p>
+      <div className='app__spinner'>
+        <CircularProgress />
       </div>
     );
   }

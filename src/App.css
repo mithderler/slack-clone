@@ -8,3 +8,11 @@ body {
   display: flex;
   height: calc(100vh - 38px);
 }
+
+.app__spinner {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
