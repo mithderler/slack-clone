@@ -1,13 +1,12 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { app } from './firebase/config';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Chat from './components/Chat';
 import Login from './components/Login';
-import NotFound from './pages/NotFound';
 import CircularProgress from '@mui/material/CircularProgress';
+import { getAuth } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { app } from './firebase/config';
 import './App.css';
 
 const auth = getAuth(app);
@@ -17,36 +16,45 @@ function App() {
 
   if (loading) {
     return (
-      <div className='app'>
+      <div className='app__spinner'>
         <CircularProgress />
       </div>
     );
   }
 
   if (error) {
-    return <NotFound error={error} />;
-  }
-
-  if (user) {
     return (
       <div>
-        <Header />
-        <div className='app__body'>
-          <Sidebar />
-          <Routes>
-            <Route
-              path='/'
-              element={<Navigate to='room/barkyVhYU0GLQ319P5Ti' />}
-            />
-            <Route path='/room/:roomId' element={<Chat />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </div>
+        <p>Error: {error}</p>
       </div>
     );
   }
 
-  return <Login />;
+  if (user) {
+    return (
+      // BEM naming convention
+      <div className='App'>
+        <>
+          <Header />
+          <div className='app__body'>
+            <Sidebar />
+            <Routes>
+              <Route path='/' element={<h1>Welcome</h1>} />
+              <Route path='/room/:roomId' element={<Chat />} />
+              <Route path='*' element={<h1>Page not found</h1>} />
+            </Routes>
+          </div>
+        </>
+      </div>
+    );
+  }
+
+  return (
+    // BEM naming convention
+    <div className='App'>
+      <Login />
+    </div>
+  );
 }
 
 export default App;
