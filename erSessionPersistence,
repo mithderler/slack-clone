@@ -1,0 +1,89 @@
+[33mcommit 538d2da8328cb9092e68367cb2a73aea30f431fb[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mslate[m[33m)[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Sat Feb 12 13:46:22 2022 +0300
+
+    landing page updated
+
+[33mcommit ee24cad17e16f2af8dd2c48147fdf1a18e7c069d[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Sat Feb 12 03:58:42 2022 +0300
+
+    readme file updated
+
+[33mcommit fb33d67f2670c35d5e2da61714909cb6d1bcbb93[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Sat Feb 12 03:18:02 2022 +0300
+
+    dotenv fixed
+
+[33mcommit 43fc2f5a59e33c25fd19358f8f5050824dbe8270[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Sat Feb 12 03:10:05 2022 +0300
+
+    dotenv updated
+
+[33mcommit 5901d390886145cf71fc729abe00076ec521fc30[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Sat Feb 12 03:07:12 2022 +0300
+
+    dotenv, icon, favicon, spinner added
+
+[33mcommit c66c59a4cb5769cb4932dd4e606fdc4dc44bbf5a[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Thu Feb 10 19:16:29 2022 +0300
+
+    auto scroll added, navbar problem fixed
+
+[33mcommit 1d00aec9199afea1faabc6bb0916431c298620b4[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Thu Feb 10 15:38:21 2022 +0300
+
+    text editor added
+
+[33mcommit f6d161db6eccf81559bc7272e5aa82c6b6f4e4cc[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Thu Feb 10 10:18:51 2022 +0300
+
+    placeholder color error fixed
+
+[33mcommit 518d77fef97f55c01d0d413144c5f127c299605a[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Thu Feb 10 10:08:31 2022 +0300
+
+    auth session problem fixed
+
+[33mcommit 70aadb428942903ee35b5b22e890fcc59621a89a[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Wed Feb 9 23:33:18 2022 +0300
+
+    sidebar and header fixed
+
+[33mcommit 150efcd7ccc1ed4f044131a2136a88591bcf6489[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Wed Feb 9 15:05:58 2022 +0300
+
+    collapse sidebar menu fixed
+
+[33mcommit 02b346f0c5f79c548bfc0de1a0aa599c8ee07cb8[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Tue Feb 8 17:47:28 2022 +0300
+
+    auth persistance added
+
+[33mcommit a233d4378f7449a3bc572bb7bbd095f71730f6b2[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Tue Feb 8 15:02:34 2022 +0300
+
+    based functinality fixed
+
+[33mcommit 96fa0c75c1ea76d7c2e20ee998b3cb59221a045e[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Mon Feb 7 14:55:08 2022 +0300
+
+    sidebar added
+
+[33mcommit d3b94bdaf54a30eda2d6fedfdd239d2032103106[m
+Author: Eyüp Demir <eyupdemir@gmail.com>
+Date:   Sun Feb 6 19:15:02 2022 +0300
+
+    Initialize project using Create React App
