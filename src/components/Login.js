@@ -6,9 +6,7 @@ import {
 } from 'firebase/auth';
 import { auth, provider } from '../firebase/config';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 import './Login.css';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 function Login() {
   // const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
