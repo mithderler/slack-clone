@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 38px;
   min-width: 0;
+  height: 38px;
   padding: 5px 0;
   color: #ffffff;
   background-color: var(--header-bgColor);
@@ -21,9 +21,9 @@
   padding-right: 20px;
 }
 
-.header__left > .MuiSvgIcon-root {
-  height: 20px;
-  width: 20px;
+.header__left--history {
+  width: 20px !important;
+  height: 20px !important;
 }
 
 .header__search {
@@ -31,36 +31,35 @@
   flex: 2;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   min-width: 0;
   max-width: 732;
-  position: relative;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.header__search > input {
-  flex: 5;
-  height: 24px;
+.header__search > ::placeholder {
+  opacity: 0.8;
+  color: #ffffff;
+}
+
+.header__search--input {
   min-width: 0;
   max-width: 680;
+  height: 24px;
+  margin: 0;
   padding: 0 8px;
+  text-align: initial;
+  vertical-align: initial;
+  overflow: initial;
   color: #ffffff;
   background-color: transparent;
   border: 0;
-  margin: 0;
-  overflow: initial;
-  text-align: initial;
-  vertical-align: initial;
 }
 
-.header__search ::placeholder {
-  color: #ffffff;
-  opacity: 1;
-}
-
-.header__search > .MuiSvgIcon-root {
-  height: 18px;
-  width: 18px;
+.header__search--icon {
+  width: 18px !important;
+  height: 18px !important;
   margin-right: 10px;
 }
 
@@ -73,29 +72,31 @@
   padding-left: 32px;
 }
 
-.header__right > .MuiSvgIcon-root {
+.header__right--help {
+  width: 20px !important;
+  height: 20px !important;
   margin-right: 10px;
 }
 
-.header__right-avatar {
+.header__right--avatar {
   position: relative;
 }
 
-.header__right-avatar > .MuiSvgIcon-root {
+.header__right--avatar-photo {
   border-radius: 4px !important;
 }
 
-.header__right-avatar > span > .MuiSvgIcon-root {
-  font-size: 20px;
-  color: green;
+.header__right--avatar-status {
   position: absolute;
-  bottom: 0;
   right: 0;
+  bottom: 0;
+  font-size: 20px !important;
+  color: green;
   transform: translate(30%, 30%);
 }
 
-.header__right-logout {
-  cursor: pointer;
+.header__right--logout {
   margin-right: 10px;
   font-size: 0.9rem;
+  cursor: pointer;
 }

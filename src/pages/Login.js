@@ -6,7 +6,7 @@ import {
 } from 'firebase/auth';
 import { auth, provider } from '../firebase/config';
 import Button from '@mui/material/Button';
-import './Login.css';
+import '../App.css';
 
 function Login() {
   // const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);

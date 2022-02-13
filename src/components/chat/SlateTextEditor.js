@@ -17,11 +17,11 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import Divider from '@material-ui/core/Divider';
 
-import db from '../firebase/config';
+import db from '../../firebase/config';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
-import { app } from '../firebase/config';
+import { app } from '../../firebase/config';
 const auth = getAuth(app);
 
 const HOTKEYS = {
@@ -35,7 +35,7 @@ const SlateTextEditor = ({ value, setValue, channelId }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const sendMessage = (e) => {
     if (channelId) {

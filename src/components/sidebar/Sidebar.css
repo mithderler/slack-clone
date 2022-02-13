@@ -1,40 +1,39 @@
 .sidebar {
   flex: 0.3;
-  background: var(--sidebar-bgColor);
-  color: white;
-  border-top: 1px solid #49274b;
   max-width: 260px;
+  color: white;
+  background: var(--sidebar-bgColor);
+  border-top: 1px solid #49274b;
 }
 
 .sidebar__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 8px 16px 10px;
   border-bottom: 1px solid #49274b;
-  padding-bottom: 10px;
-  padding: 8px 16px;
 }
 
 .sidebar__header:hover {
+  cursor: pointer;
   background: var(--header-bgColor);
   border-color: rgb(82, 38, 83);
-  cursor: pointer;
 }
 
 .sidebar__info {
   flex: 1;
 }
 
-.sidebar__info-team-name {
+.sidebar__info--left {
   display: flex;
   align-items: center;
 }
 
-.sidebar__info-team-name > .MuiSvgIcon-root {
+.sidebar__info--expand-icon {
   align-self: flex-start;
 }
 
-.sidebar__info > div > span {
+.sidebar__info--team-name {
   display: inline-block;
   font-weight: 900;
   text-overflow: ellipsis;
@@ -44,27 +43,26 @@
   margin-bottom: 5px;
 }
 
-.sidebar__info > h3 {
+.sidebar__info--username {
   display: flex;
   align-items: center;
   font-size: 13px;
   font-weight: 400;
 }
 
-.sidebar__header > .MuiSvgIcon-root {
-  font-size: 34px;
+.sidebar__header--new-message {
+  font-size: 34px !important;
   padding: 8px;
   color: #49274b;
   background-color: white;
   border-radius: 999px;
 }
 
-.sidebar__collapse-button {
-  /* background-color: transparent; */
+.sidebar__collapse--button {
   width: 100%;
-  background-color: transparent;
+  margin: 0;
+  padding: 0;
   border: 0;
   color: #ffffff;
-  padding: 0;
-  margin: 0;
+  background-color: transparent;
 }

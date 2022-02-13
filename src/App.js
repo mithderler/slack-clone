@@ -1,13 +1,13 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { app } from './firebase/config';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Chat from './components/Chat';
-import Login from './components/Login';
-import NotFound from './pages/NotFound';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import Chat from './components/chat/Chat';
 import CircularProgress from '@mui/material/CircularProgress';
+import Header from './components/header/Header';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
+import Sidebar from './components/sidebar/Sidebar';
 import './App.css';
 
 const auth = getAuth(app);
@@ -27,9 +27,10 @@ function App() {
     return <NotFound error={error} />;
   }
 
+  //todo: handle navigation of root directory to relevant channel
   if (user) {
     return (
-      <div>
+      <div className='app'>
         <Header />
         <div className='app__body'>
           <Sidebar />
@@ -38,7 +39,7 @@ function App() {
               path='/'
               element={<Navigate to='room/barkyVhYU0GLQ319P5Ti' />}
             />
-            <Route path='/room/:roomId' element={<Chat />} />
+            <Route path='/room/:channelId' element={<Chat />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </div>

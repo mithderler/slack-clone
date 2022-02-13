@@ -4,7 +4,7 @@
   padding: 20px;
 }
 
-.message > img {
+.message__user-image {
   height: 50px;
   width: 50px;
   object-fit: contain;
@@ -15,7 +15,7 @@
 }
 
 .message__timestamp {
-  color: gray;
   font-weight: 300;
   font-size: 13px;
+  color: gray;
 }

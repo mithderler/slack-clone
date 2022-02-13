@@ -1,24 +1,27 @@
-import { addDoc, collection } from 'firebase/firestore';
 import React from 'react';
+import { addDoc, collection } from 'firebase/firestore';
+import db from '../../firebase/config';
+import { FIRESTORE_COLLECTION_ROOMS } from '../../utils/constants';
 import { useNavigate } from 'react-router-dom';
-import db from '../firebase/config';
 import './SidebarOption.css';
 
-function SidebarOption({ Icon, title, id, addChannelOption, group }) {
+function SidebarOption({
+  Icon,
+  title,
+  channelId,
+  addChannelOption,
+  addGroupOption,
+}) {
   const navigate = useNavigate();
 
   const selectChannel = () => {
-    if (id) {
-      navigate(`/room/${id}`);
-    } else {
-      navigate(title);
-    }
+    channelId ? navigate(`/room/${channelId}`) : navigate(title);
   };
 
   const addChannel = async () => {
     const channelName = prompt('Please enter the channel name:');
     if (channelName) {
-      await addDoc(collection(db, 'rooms'), {
+      await addDoc(collection(db, FIRESTORE_COLLECTION_ROOMS), {
         name: channelName,
       });
     }
@@ -26,14 +29,14 @@ function SidebarOption({ Icon, title, id, addChannelOption, group }) {
 
   return (
     <div
-      className={`sidebarOption ${group ? 'sidebar__group' : ''}`}
+      className={`sidebarOption ${addGroupOption ? 'sidebar__group' : ''}`}
       onClick={addChannelOption ? addChannel : selectChannel}
     >
       {Icon && <Icon className='sidebarOption__icon' color='#bcabbc' />}
       {Icon ? (
-        <h3>{title}</h3>
+        <h3 className='sidebarOption__title'>{title}</h3>
       ) : (
-        <h3 className='sidebarOption__channel'>
+        <h3 className='sidebarOption__channel sidebarOption__title'>
           <span className='sidebarOption__hash'>#</span> {title}
         </h3>
       )}

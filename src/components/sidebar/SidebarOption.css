@@ -16,8 +16,8 @@
 
 .sidebarOption__icon {
   font-size: 18px !important;
-  color: #ffffff;
   margin-left: 14px;
+  color: #ffffff;
 }
 
 .sidebarOption__channel {
@@ -29,27 +29,27 @@
   padding: 10px;
 }
 
-.sidebarOption > h3 {
+.sidebarOption__title {
   font-weight: 400;
 }
 
 .sidebar__group {
+  display: flex;
+  align-items: center;
   height: 36px;
   width: 100%;
   line-height: 36px;
-  display: flex;
-  align-items: center;
 }
 
 .sidebar__group:hover {
   color: #ffffff;
 }
 
-.sidebar__group h3 {
+.sidebar__group > .sidebarOption__title {
   margin-left: 10px;
 }
 
-.sidebar__group .sidebarOption__icon {
+.sidebar__group > .sidebarOption__icon {
   margin-left: 0;
 }
 
