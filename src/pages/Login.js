@@ -31,13 +31,13 @@ function Login() {
           />
           <span>Continue with Google</span>
         </Button>
-        <Button variant='outlined' onClick={signInWithGithub}>
+        {/* <Button variant='outlined' onClick={signInWithGithub}>
           <img
             src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
             alt='github icon'
           />
           <span>Continue with Github</span>
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
