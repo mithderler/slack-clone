@@ -1,33 +1,20 @@
-import {
-  browserSessionPersistence,
-  setPersistence,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from 'firebase/auth';
-import { auth, provider } from '../firebase/config';
+import { useState } from 'react';
+import { googleProvider, githubProvider } from '../firebase/config';
+import { signIn } from '../firebase/auth-fn';
 import Button from '@mui/material/Button';
 import '../App.css';
 
 function Login() {
-  // const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  const signIn = () => {
-    // signInWithGoogle();
+  const [error, setError] = useState(null);
 
-    setPersistence(auth, browserSessionPersistence)
-      .then(() => {
-        return signInWithPopup(auth, provider);
-      })
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        //logged in
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+  const signInWithGoogle = () => {
+    signIn(googleProvider);
   };
+
+  const signInWithGithub = () => {
+    signIn(githubProvider);
+  };
+
   return (
     <div className='login'>
       <div className='login__container'>
@@ -37,13 +24,19 @@ function Login() {
         />
         <h1>Sign in to Slack Clone</h1>
         <div>Please select your login type</div>
-        {/* <Button onClick={signIn}>Sign In with Google</Button> */}
-        <Button variant='outlined' onClick={signIn}>
+        <Button variant='outlined' onClick={signInWithGoogle}>
           <img
             src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'
             alt='google icon'
           />
           <span>Continue with Google</span>
+        </Button>
+        <Button variant='outlined' onClick={signInWithGithub}>
+          <img
+            src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+            alt='github icon'
+          />
+          <span>Continue with Github</span>
         </Button>
       </div>
     </div>
