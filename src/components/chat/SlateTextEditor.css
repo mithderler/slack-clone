@@ -1,0 +1,58 @@
+.text-editor {
+  margin: 20px 5px 25px;
+  border-radius: 8px;
+  border: 1px solid #ccc !important;
+  cursor: text;
+}
+
+/* !!change Placeholder font and color */
+.text-editor::placeholder {
+  color: rebeccapurple;
+}
+
+.text-editor__toolbar-container {
+  display: flex;
+  direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding-left: 8px;
+}
+
+.text-editor--icon {
+  font-size: 20px !important;
+  margin: 2px;
+}
+
+.text-editor__formatting-bar {
+  height: 38px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background: rgba(248, 248, 248, 1);
+}
+
+.text-editor__formatting-bar--button-box {
+  margin-right: 5px;
+}
+
+.text-editor__formatting-bar--icon {
+  color: #ccc;
+}
+
+.text-editor__formatting-bar--icon:hover {
+  color: rgba(29, 28, 29, 0.7);
+}
+
+.text-editor__input-box {
+  height: 38px;
+  padding: 8px 12px;
+}
+
+.text-editor__input {
+  font-size: 15px;
+}
+
+.text-editor__footer-bar {
+  height: 40px;
+}

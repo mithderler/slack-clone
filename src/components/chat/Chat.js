@@ -88,8 +88,8 @@ function Chat() {
         <SlateTextEditor
           value={enteredText}
           setValue={setEnteredText}
-          channelName={channelDetails?.name}
           channelId={channelId}
+          channelName={channelDetails?.name}
         />
       </div>
       <div ref={messagesEndRef} />

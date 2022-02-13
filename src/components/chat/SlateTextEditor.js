@@ -3,25 +3,32 @@ import isHotkey from 'is-hotkey';
 import { Editable, withReact, Slate, useSlate } from 'slate-react';
 import { createEditor, Editor, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
-
-import Box from '@mui/material/Box';
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
-import CodeIcon from '@mui/icons-material/Code';
-import LooksOneIcon from '@mui/icons-material/LooksOne';
-import LooksTwoIcon from '@mui/icons-material/LooksTwo';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import Divider from '@material-ui/core/Divider';
-
 import db from '../../firebase/config';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { app } from '../../firebase/config';
+
+import Box from '@mui/material/Box';
+import CodeIcon from '@mui/icons-material/Code';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import LooksOneIcon from '@mui/icons-material/LooksOne';
+import LooksTwoIcon from '@mui/icons-material/LooksTwo';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import TextFormatIcon from '@mui/icons-material/TextFormat';
+import SendIcon from '@mui/icons-material/Send';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+import './SlateTextEditor.css';
+
 const auth = getAuth(app);
 
 const HOTKEYS = {
@@ -31,7 +38,7 @@ const HOTKEYS = {
   'mod+`': 'code',
 };
 
-const SlateTextEditor = ({ value, setValue, channelId }) => {
+const SlateTextEditor = ({ value, setValue, channelId, channelName }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
@@ -56,7 +63,7 @@ const SlateTextEditor = ({ value, setValue, channelId }) => {
   };
 
   return (
-    <Box p={1} m={2} border={1} borderColor='grey.500' borderRadius={4}>
+    <Box className='text-editor'>
       <Slate
         editor={editor}
         value={value}
@@ -64,40 +71,65 @@ const SlateTextEditor = ({ value, setValue, channelId }) => {
           setValue(value);
         }}
       >
-        <Toolbar>
+        <FormattingToolbar className='text-editor__formatting-bar'>
           <MarkButton format='bold'>
-            <FormatBoldIcon />
+            <FormatBoldIcon className='text-editor--icon text-editor__formatting-bar--icon' />
           </MarkButton>
-          <MarkButton format='italic'>
-            <FormatItalicIcon />
+          <MarkButton
+            format='italic'
+            className='text-editor__formatting-bar--button'
+          >
+            <FormatItalicIcon className='text-editor--icon text-editor__formatting-bar--icon' />
           </MarkButton>
-          <MarkButton format='underline'>
-            <FormatUnderlinedIcon />
+          <MarkButton
+            format='underline'
+            className='text-editor__formatting-bar--button'
+          >
+            <FormatUnderlinedIcon className='text-editor--icon text-editor__formatting-bar--icon' />
           </MarkButton>
-          <MarkButton format='code'>
-            <CodeIcon />
+          <MarkButton
+            format='code'
+            className='text-editor__formatting-bar--button'
+          >
+            <CodeIcon className='text-editor--icon text-editor__formatting-bar--icon' />
           </MarkButton>
-          <BlockButton format='heading-one'>
-            <LooksOneIcon />
+          <BlockButton
+            format='heading-one'
+            className='text-editor__formatting-bar--button'
+          >
+            <LooksOneIcon className='text-editor--icon text-editor__formatting-bar--icon' />
           </BlockButton>
-          <BlockButton format='heading-two'>
-            <LooksTwoIcon />
+          <BlockButton
+            format='heading-two'
+            className='text-editor__formatting-bar--button'
+          >
+            <LooksTwoIcon className='text-editor--icon text-editor__formatting-bar--icon' />
           </BlockButton>
-          <BlockButton format='block-quote'>
-            <FormatQuoteIcon />
+          <BlockButton
+            format='block-quote'
+            className='text-editor__formatting-bar--button'
+          >
+            <FormatQuoteIcon className='text-editor--icon text-editor__formatting-bar--icon' />
           </BlockButton>
-          <BlockButton format='numbered-list'>
-            <FormatListNumberedIcon />
+          <BlockButton
+            format='numbered-list'
+            className='text-editor__formatting-bar--button'
+          >
+            <FormatListNumberedIcon className='text-editor--icon text-editor__formatting-bar--icon' />
           </BlockButton>
-          <BlockButton format='bulleted-list'>
-            <FormatListBulletedIcon />
+          <BlockButton
+            format='bulleted-list'
+            className='text-editor__formatting-bar--button'
+          >
+            <FormatListBulletedIcon className='text-editor--icon text-editor__formatting-bar--icon' />
           </BlockButton>
-        </Toolbar>
-        <Box pl={1}>
+        </FormattingToolbar>
+        <Box className='text-editor__input-box'>
           <Editable
+            className='text-editor__input'
             renderElement={renderElement}
             renderLeaf={renderLeaf}
-            placeholder='Enter some rich text…'
+            placeholder={`Send a message to #${channelName}`}
             spellCheck
             autoFocus
             onKeyDown={(event) => {
@@ -114,6 +146,41 @@ const SlateTextEditor = ({ value, setValue, channelId }) => {
             }}
           />
         </Box>
+        <FoooterToolbar className='text-editor__footer-bar'>
+          <MarkButton format='bold'>
+            <AddCircleIcon className='text-editor--icon text-editor__footer-bar--icon' />
+          </MarkButton>
+          <MarkButton
+            format='italic'
+            className='text-editor__footer-bar--button'
+          >
+            <SentimentSatisfiedAltIcon className='text-editor--icon text-editor__footer-bar--icon' />
+          </MarkButton>
+          <MarkButton
+            format='underline'
+            className='text-editor__footer-bar--button'
+          >
+            <AlternateEmailIcon className='text-editor--icon text-editor__footer-bar--icon' />
+          </MarkButton>
+          <MarkButton
+            format='underline'
+            className='text-editor__footer-bar--button'
+          >
+            <TextFormatIcon className='text-editor--icon text-editor__footer-bar--icon' />
+          </MarkButton>
+          <MarkButton
+            format='underline'
+            className='text-editor__footer-bar--button'
+          >
+            <SendIcon className='text-editor--icon text-editor__footer-bar--icon' />
+          </MarkButton>
+          <MarkButton
+            format='underline'
+            className='text-editor__footer-bar--button'
+          >
+            <ExpandMoreIcon className='text-editor--icon text-editor__footer-bar--icon' />
+          </MarkButton>
+        </FoooterToolbar>
       </Slate>
     </Box>
   );
@@ -161,7 +228,7 @@ export const Leaf = ({ attributes, children, leaf }) => {
 const BlockButton = ({ format, children }) => {
   const editor = useSlate();
   return (
-    <Box ml={1} mt={1}>
+    <Box className='text-editor__formatting-bar--button-box'>
       <ToggleButton
         value={format}
         selected={isBlockActive(editor, format)}
@@ -169,7 +236,12 @@ const BlockButton = ({ format, children }) => {
           event.preventDefault();
           toggleBlock(editor, format);
         }}
-        style={{ lineHeight: 1 }}
+        style={{
+          lineHeight: 1,
+          padding: 0,
+          margin: 0,
+          border: 0,
+        }}
       >
         {children}
       </ToggleButton>
@@ -180,7 +252,7 @@ const BlockButton = ({ format, children }) => {
 const MarkButton = ({ format, children }) => {
   const editor = useSlate();
   return (
-    <Box ml={1} mt={1}>
+    <Box className='text-editor__formatting-bar--button-box'>
       <ToggleButton
         value={format}
         selected={isMarkActive(editor, format)}
@@ -188,7 +260,12 @@ const MarkButton = ({ format, children }) => {
           event.preventDefault();
           toggleMark(editor, format);
         }}
-        style={{ lineHeight: 1 }}
+        style={{
+          lineHeight: 1,
+          padding: 0,
+          margin: 0,
+          border: 0,
+        }}
       >
         {children}
       </ToggleButton>
@@ -196,25 +273,28 @@ const MarkButton = ({ format, children }) => {
   );
 };
 
-const Menu = React.forwardRef(({ children, ...props }, ref) => (
+const FormattingMenu = React.forwardRef(({ children, ...props }, ref) => (
   <>
-    <Box
-      display='flex'
-      direction='row'
-      justify='flex-start'
-      alignItems='center'
-      flexWrap='wrap'
-    >
+    <Box className='text-editor__toolbar-container text-editor__formatting-bar'>
       {children}
-    </Box>
-    <Box pt={2}>
-      <Divider variant='middle' />
     </Box>
   </>
 ));
 
-const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
-  <Menu {...props} ref={ref} />
+const FormattingToolbar = React.forwardRef(({ className, ...props }, ref) => (
+  <FormattingMenu {...props} ref={ref} />
+));
+
+const FooterMenu = React.forwardRef(({ children, ...props }, ref) => (
+  <>
+    <Box className='text-editor__toolbar-container text-editor__footer-bar'>
+      {children}
+    </Box>
+  </>
+));
+
+const FoooterToolbar = React.forwardRef(({ className, ...props }, ref) => (
+  <FooterMenu {...props} ref={ref} />
 ));
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list'];
