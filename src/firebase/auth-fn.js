@@ -14,6 +14,6 @@ export const signIn = (provider) => {
       //logged in
     })
     .catch((error) => {
-      alert(error.message);
+      console.log(error.message);
     });
 };
