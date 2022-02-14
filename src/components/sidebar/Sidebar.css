@@ -4,6 +4,12 @@
   color: white;
   background: var(--sidebar-bgColor);
   border-top: 1px solid #49274b;
+  z-index: 20;
+}
+
+.sidebar.hidden {
+  display: none;
+  transition: display linear 0.5s;
 }
 
 .sidebar__header {

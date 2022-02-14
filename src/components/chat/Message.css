@@ -1,21 +1,39 @@
 .message {
   display: flex;
-  align-items: center;
-  padding: 20px;
+  align-items: flex-start;
+  padding: 8px 20px;
 }
 
-.message__user-image {
-  height: 50px;
-  width: 50px;
+.message__user--image {
+  height: 36px;
+  width: 36px;
   object-fit: contain;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .message__info {
   padding-left: 10px;
 }
 
+.message__info--top {
+  height: 22px;
+}
+
+.message__user--name {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(29, 28, 29, 1);
+}
+
 .message__timestamp {
   font-weight: 300;
-  font-size: 13px;
+  font-size: 12px;
+  margin-left: 10px;
   color: gray;
+}
+
+.message__output {
+  font-size: 15px;
+  line-height: 1.45;
 }

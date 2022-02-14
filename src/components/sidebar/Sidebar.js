@@ -12,6 +12,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import List from '@mui/material/List';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
+import { useDispatch, useSelector } from 'react-redux';
+import { uiActions } from '../../store/ui';
 import './Sidebar.css';
 
 const auth = getAuth(app);
@@ -19,10 +21,12 @@ const auth = getAuth(app);
 function Sidebar() {
   const [user] = useAuthState(auth);
   const [channels, setChannels] = useState([]);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isChannelListOpen, setIsChannelListOpen] = useState(true);
+  const isSidebarHidden = useSelector((state) => state.ui.isSidebarHidden);
+  const dispatch = useDispatch();
 
   const collapseChannelsHandler = () => {
-    setIsOpen(!isOpen);
+    setIsChannelListOpen(!isChannelListOpen);
   };
 
   useEffect(() => {
@@ -31,9 +35,21 @@ function Sidebar() {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    window.onresize = resize;
+    function resize() {
+      if (window.innerWidth > 585) {
+        dispatch(uiActions.showSidebar());
+      }
+      if (window.innerWidth <= 585) {
+        dispatch(uiActions.hideSidebar());
+      }
+    }
+  }, [dispatch]);
+
   //todo: Workspace name is hardcoded, need to handle after adding workspace feature
   return (
-    <div className='sidebar'>
+    <div className={`sidebar ${isSidebarHidden ? 'hidden' : ''}`}>
       <div className='sidebar__header'>
         <div className='sidebar__info'>
           <div className='sidebar__info--left'>
@@ -53,13 +69,13 @@ function Sidebar() {
         className='sidebar__collapse--button'
       >
         <SidebarOption
-          Icon={isOpen ? ArrowDropDownIcon : ArrowRightIcon}
+          Icon={isChannelListOpen ? ArrowDropDownIcon : ArrowRightIcon}
           title='Channels'
           addGroupOption
         />
       </button>
 
-      <Collapse in={isOpen} timeout='auto' unmountOnExit>
+      <Collapse in={isChannelListOpen} timeout='auto' unmountOnExit>
         <List component='div' disablePadding>
           {channels.map((channel) => (
             <SidebarOption

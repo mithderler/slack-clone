@@ -7,16 +7,33 @@
 }
 
 .chat__header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  height: 49px;
+  padding: 0 20px 0 16px;
   border-bottom: 1px solid lightgray;
+  background: #fff;
+  z-index: 5;
 }
 
-.chat__channel-name {
+.chat__sidebar-menu--icon-container {
+  cursor: pointer;
+}
+
+.chat__sidebar-menu--icon {
+  margin-right: 15px;
+}
+
+.chat__channel--name {
   display: flex;
   text-transform: lowercase;
+  font-size: 18px;
+  font-weight: 900;
 }
 
 .chat__channel-name > .MuiSvgIcon-root {
@@ -35,9 +52,52 @@
   font-size: 16px !important;
 }
 
+.message-list__day-divider {
+  display: block;
+  background: transparent;
+  padding: 20px 0 10px;
+  position: relative;
+  user-select: text;
+}
+
+.message-list__day-divider__line {
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  border-top: 1px solid rgba(221, 221, 221, 1);
+  color: rgba(29, 28, 29, 1);
+  border-bottom: 0;
+  margin: 0 0 -1px;
+  top: -1px;
+  position: relative;
+}
+.message-list__day-divider__label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  height: 28px;
+  max-width: 250px;
+  min-width: 0;
+  line-height: 27px;
+  z-index: 2;
+  pointer-events: all;
+  text-align: center;
+  margin: 0 auto;
+  transform: translateY(-15px);
+  border-radius: 16px;
+  border: 2px solid rgba(221, 221, 221, 1);
+  padding: 0px 16px;
+  background: #fff;
+}
+
 .chat__editor {
   position: fixed;
   bottom: 0;
   left: 260px;
   width: calc(100vw - 300px);
+  background: #fff;
+  margin-bottom: 24px;
 }
