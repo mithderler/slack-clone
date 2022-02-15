@@ -51,15 +51,12 @@ function Sidebar() {
   return (
     <div className={`sidebar ${isSidebarHidden ? 'hidden' : ''}`}>
       <div className='sidebar__header'>
-        <div className='sidebar__info'>
-          <div className='sidebar__info--left'>
-            <span className='sidebar__info--team-name'>Devs to Moon</span>
-            <ExpandMoreIcon
-              className='sidebar__info--expand-icon'
-              fontSize='small'
-            />
-          </div>
-          <h3 className='sidebar__info--username'>{user?.displayName}</h3>
+        <div className='sidebar__info--left'>
+          <span className='sidebar__info--team-name'>Devs to Moon</span>
+          <ExpandMoreIcon
+            className='sidebar__info--expand-icon'
+            fontSize='small'
+          />
         </div>
         <NoteAltOutlinedIcon className='sidebar__header--new-message' />
       </div>

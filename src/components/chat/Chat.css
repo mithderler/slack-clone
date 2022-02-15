@@ -4,6 +4,7 @@
   position: relative;
   overflow-y: scroll;
   padding-bottom: 150px;
+  /* background-color: blueviolet; */
 }
 
 .chat__header {
@@ -41,21 +42,44 @@
   font-size: 18px;
 }
 
-.chat__header--info {
+.chat__header__avatar-stack-container {
+  height: 28px;
+  padding: 3px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
   display: flex;
   align-items: center;
-  font-size: 14px;
 }
 
-.chat__header--info-icon {
-  margin-right: 5px !important;
-  font-size: 16px !important;
+.chat__header__avatar-stack--avatar {
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 5px !important;
+}
+
+.chat__header__avatar-stack--user-count {
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #888;
+}
+
+.chat__message-editor-block {
+  /* background-color: blue; */
+}
+
+.chat__message-block {
+  /* background-color: brown; */
+}
+
+.chat__messages {
+  margin-top: 26px;
 }
 
 .message-list__day-divider {
-  display: block;
+  display: inline-block;
+  width: 100%;
   background: transparent;
-  padding: 20px 0 10px;
   position: relative;
   user-select: text;
 }
@@ -67,9 +91,6 @@
   height: 1px;
   border-top: 1px solid rgba(221, 221, 221, 1);
   color: rgba(29, 28, 29, 1);
-  border-bottom: 0;
-  margin: 0 0 -1px;
-  top: -1px;
   position: relative;
 }
 .message-list__day-divider__label {
@@ -89,15 +110,37 @@
   transform: translateY(-15px);
   border-radius: 16px;
   border: 2px solid rgba(221, 221, 221, 1);
-  padding: 0px 16px;
   background: #fff;
 }
 
 .chat__editor {
   position: fixed;
   bottom: 0;
-  left: 260px;
+  left: 270px;
+  right: 10px;
   width: calc(100vw - 300px);
   background: #fff;
   margin-bottom: 24px;
+  /* background-color: aqua; */
+}
+
+@media only screen and (max-width: 1079px) {
+  .chat__editor {
+    left: 230px;
+    width: calc(100vw - 260px);
+  }
+}
+
+@media only screen and (max-width: 859px) {
+  .chat__editor {
+    left: 210px;
+    width: calc(100vw - 240px);
+  }
+}
+
+@media only screen and (max-width: 565px) {
+  .chat__editor {
+    left: 10px;
+    width: calc(100vw - 34px);
+  }
 }

@@ -1,9 +1,13 @@
 .message {
   display: flex;
   align-items: flex-start;
-  padding: 8px 20px;
+  padding: 0 20px;
 }
 
+.message__user--image-field {
+  height: 36px;
+  width: 36px;
+}
 .message__user--image {
   height: 36px;
   width: 36px;

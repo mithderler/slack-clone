@@ -1,10 +1,21 @@
 .sidebar {
-  flex: 0.3;
-  max-width: 260px;
+  width: 260px;
   color: white;
   background: var(--sidebar-bgColor);
   border-top: 1px solid #49274b;
   z-index: 20;
+}
+
+@media only screen and (max-width: 1079px) {
+  .sidebar {
+    width: 220px;
+  }
+}
+
+@media only screen and (max-width: 859px) {
+  .sidebar {
+    width: 200px;
+  }
 }
 
 .sidebar.hidden {
@@ -26,17 +37,15 @@
   border-color: rgb(82, 38, 83);
 }
 
-.sidebar__info {
-  flex: 1;
-}
-
 .sidebar__info--left {
   display: flex;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .sidebar__info--expand-icon {
   align-self: flex-start;
+  margin-right: 5px;
 }
 
 .sidebar__info--team-name {
@@ -49,19 +58,14 @@
   margin-bottom: 5px;
 }
 
-.sidebar__info--username {
-  display: flex;
-  align-items: center;
-  font-size: 13px;
-  font-weight: 400;
-}
-
 .sidebar__header--new-message {
   font-size: 34px !important;
   padding: 8px;
   color: #49274b;
   background-color: white;
   border-radius: 999px;
+  margin-right: 2px;
+  margin-left: auto;
 }
 
 .sidebar__collapse--button {

@@ -1,17 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
+import { app } from '../../firebase/config';
 import {
   getChannelDetails,
   getChannelMessages,
 } from '../../firebase/firestore-fn';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../../store/ui';
+import Backdrop from '../containers/Backdrop';
 import Message from './Message';
 import SlateTextEditor from './SlateTextEditor';
-import InfoIcon from '@mui/icons-material/Info';
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
-import Backdrop from '../containers/Backdrop';
 import './Chat.css';
 
 const initialValue = [
@@ -21,7 +25,10 @@ const initialValue = [
   },
 ];
 
+const auth = getAuth(app);
+
 function Chat() {
+  const [user] = useAuthState(auth);
   const [enteredText, setEnteredText] = useState(initialValue);
   const [channelDetails, setChannelDetails] = useState(null);
   const [channelMessages, setChannelMessages] = useState([]);
@@ -122,34 +129,52 @@ function Chat() {
             </h4>
           </div>
           <div className='chat__header--right'>
-            <p className='chat__header--info'>
-              <InfoIcon className='chat__header--info-icon' />
-              Details
-            </p>
+            <div className='chat__header__avatar-stack-container'>
+              <AvatarGroup max={2}>
+                <Avatar
+                  className='chat__header__avatar-stack--avatar'
+                  variant='square'
+                  alt={user?.displayName}
+                  src={user?.photoURL}
+                />
+                <Avatar
+                  className='chat__header__avatar-stack--avatar'
+                  variant='square'
+                  alt='Travis Howard'
+                  src='/static/images/avatar/2.jpg'
+                />
+              </AvatarGroup>
+              <span className='chat__header__avatar-stack--user-count'>2</span>
+            </div>
           </div>
         </div>
-        {channelMessages.map(({ message, timestamp, user, userImage }) => {
-          return (
-            <div key={timestamp}>
-              {getDayDivider(timestamp)}
+        <div className='chat__message-editor-block'>
+          <div className='chat__message-block'>
+            {channelMessages.map(({ message, timestamp, user, userImage }) => {
+              return (
+                <div className='chat__messages' key={timestamp}>
+                  {getDayDivider(timestamp)}
 
-              <Message
-                user={user}
-                userImage={userImage}
-                message={message}
-                timestamp={timestamp}
-              />
-            </div>
-          );
-        })}
-        <div className='chat__editor'>
-          <SlateTextEditor
-            value={enteredText}
-            setValue={setEnteredText}
-            channelId={channelId}
-            channelName={channelDetails?.name}
-          />
+                  <Message
+                    user={user}
+                    userImage={userImage}
+                    message={message}
+                    timestamp={timestamp}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <div className='chat__editor'>
+            <SlateTextEditor
+              value={enteredText}
+              setValue={setEnteredText}
+              channelId={channelId}
+              channelName={channelDetails?.name}
+            />
+          </div>
         </div>
+
         <div ref={messagesEndRef} />
       </div>
     </>

@@ -8,15 +8,12 @@ import Header from './components/header/Header';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Sidebar from './components/sidebar/Sidebar';
-import { useSelector } from 'react-redux';
-import Backdrop from './components/containers/Backdrop';
 import './App.css';
 
 const auth = getAuth(app);
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
-  const isSidebarHidden = useSelector((state) => state.ui.isSidebarHidden);
 
   if (loading) {
     return (

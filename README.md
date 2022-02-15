@@ -1,6 +1,6 @@
 # React Slack Clone 2022
 
-This project powered by React, Firebase, Material-UI (MUI) and Slate. The new 2022 design of Slack was used as template.
+This project powered by React, Redux, Firebase, Material-UI (MUI) and Slate. The new 2022 design of Slack was used as template.
 
 ![](images/slack_ss.png)
 

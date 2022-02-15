@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Message.css';
+
+// let prevTimestamp = {
+//   seconds: 0,
+//   nanoseconds: 0,
+// };
+// let prevUser = '';
 
 function Message({ message, timestamp, user, userImage }) {
   const convertTimestampToHour = (timestamp) => {
@@ -13,6 +19,23 @@ function Message({ message, timestamp, user, userImage }) {
     const timeStr = `${hours}:${minutes} ${ampm}`;
     return timeStr;
   };
+
+  // const waitingTimeInSec = 10;
+  // const timeDiff = timestamp.seconds - prevTimestamp.seconds;
+
+  // if (timeDiff < waitingTimeInSec) {
+  //   return (
+  //     <div className='message'>
+  //       <div className='.message__user--image-field'></div>
+  //       <div className='message__info'>
+  //         <p className='message__output'>{message}</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+  // prevUser = user;
+  // prevTimestamp = timestamp;
+
   return (
     <div className='message'>
       <img className='message__user--image' src={userImage} alt='user' />
@@ -24,6 +47,7 @@ function Message({ message, timestamp, user, userImage }) {
           </span>
         </div>
         <p className='message__output'>{message}</p>
+        {/* <p>inside</p> */}
       </div>
     </div>
   );

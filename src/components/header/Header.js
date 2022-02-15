@@ -24,11 +24,12 @@ function Header() {
         <AccessTimeIcon className='header__left--history' />
       </div>
       <div className='header__search'>
-        <input
+        {/* <input
           className='header__search--input'
           type='text'
           placeholder='Search Devs to Moon'
-        />
+        /> */}
+        <p className='header__search--input'>Search Devs to Moon</p>
         <SearchIcon className='header__search--icon' />
       </div>
       <div className='header__right'>
