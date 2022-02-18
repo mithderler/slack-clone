@@ -6,7 +6,7 @@ import {
   orderBy,
 } from 'firebase/firestore';
 import db from './config';
-import * as constants from '../utils/constants';
+import * as constants from '../utils/constants/Firestore';
 
 export const getChannelList = (setChannels) => {
   return onSnapshot(

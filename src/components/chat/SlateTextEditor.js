@@ -26,6 +26,8 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import TextFormatIcon from '@mui/icons-material/TextFormat';
 import SendIcon from '@mui/icons-material/Send';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Tooltips } from '../../utils/functions/Mui';
+import * as constants from '../../utils/constants/Tooltips';
 
 import './SlateTextEditor.css';
 
@@ -73,25 +75,33 @@ const SlateTextEditor = ({ value, setValue, channelId, channelName }) => {
       >
         <FormattingToolbar className='text-editor__formatting-bar'>
           <MarkButton format='bold'>
-            <FormatBoldIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_BOLD}>
+              <FormatBoldIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            </Tooltips>
           </MarkButton>
           <MarkButton
             format='italic'
             className='text-editor__formatting-bar--button'
           >
-            <FormatItalicIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_ITALIC}>
+              <FormatItalicIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            </Tooltips>
           </MarkButton>
           <MarkButton
             format='underline'
             className='text-editor__formatting-bar--button'
           >
-            <FormatUnderlinedIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_UNDERLINE}>
+              <FormatUnderlinedIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            </Tooltips>
           </MarkButton>
           <MarkButton
             format='code'
             className='text-editor__formatting-bar--button'
           >
-            <CodeIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_CODE}>
+              <CodeIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            </Tooltips>
           </MarkButton>
           <BlockButton
             format='heading-one'
@@ -109,19 +119,25 @@ const SlateTextEditor = ({ value, setValue, channelId, channelName }) => {
             format='block-quote'
             className='text-editor__formatting-bar--button'
           >
-            <FormatQuoteIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_BLOCK_QUOTE}>
+              <FormatQuoteIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            </Tooltips>
           </BlockButton>
           <BlockButton
             format='numbered-list'
             className='text-editor__formatting-bar--button'
           >
-            <FormatListNumberedIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_NUMBERED_LIST}>
+              <FormatListNumberedIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            </Tooltips>
           </BlockButton>
           <BlockButton
             format='bulleted-list'
             className='text-editor__formatting-bar--button'
           >
-            <FormatListBulletedIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_BULLETED_LIST}>
+              <FormatListBulletedIcon className='text-editor--icon text-editor__formatting-bar--icon' />
+            </Tooltips>
           </BlockButton>
         </FormattingToolbar>
         <Box className='text-editor__input-box'>
@@ -148,25 +164,36 @@ const SlateTextEditor = ({ value, setValue, channelId, channelName }) => {
         </Box>
         <FoooterToolbar className='text-editor__footer-bar'>
           <MarkButton format='bold'>
-            <AddCircleIcon className='text-editor--icon text-editor__footer-bar--icon' />
+            <Tooltips
+              placement='top'
+              title={constants.SLATE_ATTACHMENTS_SHORTCUTS}
+            >
+              <AddCircleIcon className='text-editor--icon text-editor__footer-bar--icon' />
+            </Tooltips>
           </MarkButton>
           <MarkButton
             format='italic'
             className='text-editor__footer-bar--button'
           >
-            <SentimentSatisfiedAltIcon className='text-editor--icon text-editor__footer-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_EMOJI}>
+              <SentimentSatisfiedAltIcon className='text-editor--icon text-editor__footer-bar--icon' />
+            </Tooltips>
           </MarkButton>
           <MarkButton
             format='underline'
             className='text-editor__footer-bar--button'
           >
-            <AlternateEmailIcon className='text-editor--icon text-editor__footer-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_MENTION_SOMEONE}>
+              <AlternateEmailIcon className='text-editor--icon text-editor__footer-bar--icon' />
+            </Tooltips>
           </MarkButton>
           <MarkButton
             format='underline'
             className='text-editor__footer-bar--button'
           >
-            <TextFormatIcon className='text-editor--icon text-editor__footer-bar--icon' />
+            <Tooltips placement='top' title={constants.SLATE_HIDE_FORMATTING}>
+              <TextFormatIcon className='text-editor--icon text-editor__footer-bar--icon' />
+            </Tooltips>
           </MarkButton>
           <MarkButton
             format='underline'

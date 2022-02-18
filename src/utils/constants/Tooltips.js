@@ -1,0 +1,17 @@
+export const CHANNEL_HEADER_HELP = 'Help';
+export const CHANNEL_HEADER_SEARCH = 'Search';
+export const CHANEL_HEADER_HISTORY = 'History';
+export const CHANNEL_SIDEBAR_NEW_MESSAGE = 'New message';
+export const CHANNEL_CHAT_HEADER_NAME = 'Get channel details';
+export const CHANNEL_CHAT_HEADER_AVATARS = 'View all members of this channel';
+export const SLATE_BOLD = 'Bold';
+export const SLATE_ITALIC = 'Italic';
+export const SLATE_UNDERLINE = 'Underline';
+export const SLATE_CODE = 'Code';
+export const SLATE_BLOCK_QUOTE = 'Block-quote';
+export const SLATE_NUMBERED_LIST = 'Ordered List';
+export const SLATE_BULLETED_LIST = 'Bulleted List';
+export const SLATE_ATTACHMENTS_SHORTCUTS = 'Attachments & shortcuts';
+export const SLATE_EMOJI = 'Emoji';
+export const SLATE_MENTION_SOMEONE = 'Mention someone';
+export const SLATE_HIDE_FORMATTING = 'Hide formatting';

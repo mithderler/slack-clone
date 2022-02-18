@@ -14,6 +14,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../../store/ui';
+import * as constants from '../../utils/constants/Tooltips';
+import { Tooltips } from '../../utils/functions/Mui';
 import './Sidebar.css';
 
 const auth = getAuth(app);
@@ -58,7 +60,9 @@ function Sidebar() {
             fontSize='small'
           />
         </div>
-        <NoteAltOutlinedIcon className='sidebar__header--new-message' />
+        <Tooltips title={constants.CHANNEL_SIDEBAR_NEW_MESSAGE}>
+          <NoteAltOutlinedIcon className='sidebar__header--new-message' />
+        </Tooltips>
       </div>
       <SidebarOption Icon={MoreVertIcon} title='Browse Slack' addGroupOption />
       <button

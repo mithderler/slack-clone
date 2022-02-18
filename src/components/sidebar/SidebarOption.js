@@ -1,7 +1,7 @@
 import React from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import db from '../../firebase/config';
-import { FIRESTORE_COLLECTION_ROOMS } from '../../utils/constants';
+import { FIRESTORE_COLLECTION_ROOMS } from '../../utils/constants/Firestore';
 import { useNavigate } from 'react-router-dom';
 import './SidebarOption.css';
 

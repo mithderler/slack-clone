@@ -16,6 +16,8 @@ import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
+import { Tooltips } from '../../utils/functions/Mui';
+import * as constants from '../../utils/constants/Tooltips';
 import './Chat.css';
 
 const initialValue = [
@@ -123,27 +125,31 @@ function Chat() {
                 <ReceiptOutlinedIcon className='chat__sidebar-menu--icon' />
               </div>
             )}
-            <h4>
-              <strong># {channelDetails?.name}</strong>
-              <ExpandMoreIcon fontSize='small' />
-            </h4>
+            <Tooltips title={constants.CHANNEL_CHAT_HEADER_NAME}>
+              <h4>
+                <strong># {channelDetails?.name}</strong>
+                <ExpandMoreIcon fontSize='small' />
+              </h4>
+            </Tooltips>
           </div>
           <div className='chat__header--right'>
             <div className='chat__header__avatar-stack-container'>
-              <AvatarGroup max={2}>
-                <Avatar
-                  className='chat__header__avatar-stack--avatar'
-                  variant='square'
-                  alt={user?.displayName}
-                  src={user?.photoURL}
-                />
-                <Avatar
-                  className='chat__header__avatar-stack--avatar'
-                  variant='square'
-                  alt='Travis Howard'
-                  src='/static/images/avatar/2.jpg'
-                />
-              </AvatarGroup>
+              <Tooltips title={constants.CHANNEL_CHAT_HEADER_AVATARS}>
+                <AvatarGroup max={2}>
+                  <Avatar
+                    className='chat__header__avatar-stack--avatar'
+                    variant='square'
+                    alt={user?.displayName}
+                    src={user?.photoURL}
+                  />
+                  <Avatar
+                    className='chat__header__avatar-stack--avatar'
+                    variant='square'
+                    alt='Travis Howard'
+                    src='/static/images/avatar/2.jpg'
+                  />
+                </AvatarGroup>
+              </Tooltips>
               <span className='chat__header__avatar-stack--user-count'>2</span>
             </div>
           </div>
