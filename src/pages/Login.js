@@ -70,7 +70,7 @@ function Login() {
           <Box
             component='form'
             sx={{
-              '& > :not(style)': { m: 1, width: '100%' },
+              '& > :not(style)': { width: '100%' },
             }}
             noValidate
             autoComplete='off'
@@ -80,6 +80,7 @@ function Login() {
               variant='outlined'
               placeholder='name@work-email.com'
               size='small'
+              sx={{ mb: 2 }}
             />
             <TextField
               id='outlined-password-input'
@@ -87,6 +88,7 @@ function Login() {
               type='password'
               autoComplete='current-password'
               size='small'
+              sx={{ mb: 3 }}
             />
 
             <Button
