@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import '../App.css';
+import '../index.css';
 
 const NotFound = ({ error }) => {
   const navigate = useNavigate();

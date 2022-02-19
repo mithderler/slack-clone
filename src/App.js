@@ -8,7 +8,7 @@ import Header from './components/header/Header';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Sidebar from './components/sidebar/Sidebar';
-import './App.css';
+import './index.css';
 
 const auth = getAuth(app);
 
@@ -35,6 +35,7 @@ function App() {
         <div className='app__body'>
           <Sidebar />
           <Routes>
+            <Route path='/signin' element={<Navigate to='/' />} />
             <Route
               path='/'
               element={<Navigate to='room/barkyVhYU0GLQ319P5Ti' />}
@@ -47,7 +48,12 @@ function App() {
     );
   }
 
-  return <Login />;
+  return (
+    <Routes>
+      <Route path='/signin' element={<Login />} />
+      <Route path='*' element={<Navigate to='/signin' />} />
+    </Routes>
+  );
 }
 
 export default App;
