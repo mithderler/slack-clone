@@ -4,14 +4,20 @@
 :after,
 :before {
   margin: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', 'Lato', sans-serif;
+  box-sizing: inherit;
 }
 
 :root {
   --sidebar-bgColor: #3f0e40;
   --sidebar-textColor: #bcabbc;
   --header-bgColor: #350d36;
+  --menu-textColor: rgb(29, 28, 29);
+}
+
+body {
+  font-size: 15px;
+  font-family: 'Roboto', 'Lato', sans-serif;
+  box-sizing: border-box;
 }
 
 .app__body {

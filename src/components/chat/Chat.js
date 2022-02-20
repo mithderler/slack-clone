@@ -30,6 +30,17 @@ const initialValue = [
 const auth = getAuth(app);
 
 function Chat() {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleOpenMenu = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   const [user] = useAuthState(auth);
   const [enteredText, setEnteredText] = useState(initialValue);
   const [channelDetails, setChannelDetails] = useState(null);
@@ -132,6 +143,7 @@ function Chat() {
               </h4>
             </Tooltips>
           </div>
+
           <div className='chat__header--right'>
             <div className='chat__header__avatar-stack-container'>
               <Tooltips title={constants.CHANNEL_CHAT_HEADER_AVATARS}>

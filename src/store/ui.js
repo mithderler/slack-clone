@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isSidebarHidden: false,
+  teamName: 'Mith Derler Devs',
 };
 
 const uiSlice = createSlice({
