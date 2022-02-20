@@ -26,7 +26,6 @@ function App() {
       }
       if (window.innerWidth <= 585) {
         dispatch(uiActions.hideSidebar());
-        console.log(window.innerWidth);
       }
     };
 

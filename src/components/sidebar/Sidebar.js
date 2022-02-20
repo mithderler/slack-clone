@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getAuth } from 'firebase/auth';
-import { app } from '../../firebase/config';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { getChannelList } from '../../firebase/firestore-fn';
+import { useSelector } from 'react-redux';
 import SidebarOption from './SidebarOption';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -12,20 +10,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import List from '@mui/material/List';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
-import { useDispatch, useSelector } from 'react-redux';
-import { uiActions } from '../../store/ui';
 import * as constants from '../../utils/constants/Tooltips';
 import { Tooltips } from '../../utils/functions/Mui';
 import './Sidebar.css';
 
-const auth = getAuth(app);
-
 function Sidebar() {
-  const [user] = useAuthState(auth);
   const [channels, setChannels] = useState([]);
   const [isChannelListOpen, setIsChannelListOpen] = useState(true);
   const isSidebarHidden = useSelector((state) => state.ui.isSidebarHidden);
-  const dispatch = useDispatch();
 
   const collapseChannelsHandler = () => {
     setIsChannelListOpen(!isChannelListOpen);
@@ -36,18 +28,6 @@ function Sidebar() {
 
     return () => unsubscribe();
   }, []);
-
-  // useEffect(() => {
-  //   window.onresize = resize;
-  //   function resize() {
-  //     if (window.innerWidth > 585) {
-  //       dispatch(uiActions.showSidebar());
-  //     }
-  //     if (window.innerWidth <= 585) {
-  //       dispatch(uiActions.hideSidebar());
-  //     }
-  //   }
-  // }, [dispatch]);
 
   //todo: Workspace name is hardcoded, need to handle after adding workspace feature
   return (

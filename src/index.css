@@ -195,7 +195,7 @@ body {
   list-style: none;
   padding-inline-start: 0;
   display: flex;
-  gap: 10px;
+  /* gap: 10px; */
   font-size: 15px;
   color: #696969;
 }
@@ -203,13 +203,14 @@ body {
 @media only screen and (max-width: 490px) {
   .login__footer ul {
     font-size: 12px;
-    gap: 5px;
+    /* gap: 5px; */
   }
 }
 
 .login__footer ul li {
   flex-grow: 1;
   cursor: pointer;
+  text-align: center;
 }
 
 .login__footer ul li:hover {
@@ -221,8 +222,8 @@ body {
 .login__footer--region {
   display: flex;
   align-items: center;
-  margin: 0;
-  padding: 0;
+  justify-content: center;
+  /* background-color: cyan; */
 }
 
 .login__footer--region > .MuiSvgIcon-root {
@@ -232,7 +233,7 @@ body {
 }
 
 @media only screen and (max-width: 490px) {
-  .login__footer--region > .MuiSvgIcon-root {
+  .login__footer--region > .MuiSvgIcon-root:nth-child(1) {
     display: none;
   }
 }
