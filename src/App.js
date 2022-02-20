@@ -2,6 +2,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
 import { app } from './firebase/config';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useDispatch } from 'react-redux';
+import { uiActions } from './store/ui';
+import { useEffect } from 'react';
 import Chat from './components/chat/Chat';
 import CircularProgress from '@mui/material/CircularProgress';
 import Header from './components/header/Header';
@@ -14,6 +17,34 @@ const auth = getAuth(app);
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const sidebarSwitchHandler = () => {
+      if (window.innerWidth > 585) {
+        dispatch(uiActions.showSidebar());
+      }
+      if (window.innerWidth <= 585) {
+        dispatch(uiActions.hideSidebar());
+        console.log(window.innerWidth);
+      }
+    };
+
+    window.addEventListener('resize', sidebarSwitchHandler);
+    window.addEventListener('DOMContentLoaded', sidebarSwitchHandler);
+
+    return () => {
+      window.removeEventListener('resize', sidebarSwitchHandler);
+      window.removeEventListener('DOMContentLoaded', sidebarSwitchHandler);
+    };
+  }, [dispatch]);
+
+  // Onload hide sidebar for small devices
+  useEffect(() => {
+    if (window.innerWidth <= 585) {
+      dispatch(uiActions.hideSidebar());
+    }
+  }, []);
 
   if (loading) {
     return (

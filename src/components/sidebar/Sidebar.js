@@ -37,17 +37,17 @@ function Sidebar() {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    window.onresize = resize;
-    function resize() {
-      if (window.innerWidth > 585) {
-        dispatch(uiActions.showSidebar());
-      }
-      if (window.innerWidth <= 585) {
-        dispatch(uiActions.hideSidebar());
-      }
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   window.onresize = resize;
+  //   function resize() {
+  //     if (window.innerWidth > 585) {
+  //       dispatch(uiActions.showSidebar());
+  //     }
+  //     if (window.innerWidth <= 585) {
+  //       dispatch(uiActions.hideSidebar());
+  //     }
+  //   }
+  // }, [dispatch]);
 
   //todo: Workspace name is hardcoded, need to handle after adding workspace feature
   return (
